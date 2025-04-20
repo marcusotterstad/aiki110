@@ -21,6 +21,8 @@ setup(
     entry_points={
         'console_scripts': [
             'lysdiodenode = maott4996_agenter.lysdiodenode:main',
+            'bevegelsesnode = maott4996_agenter.bevegelsesnode:main',
+            'motornode = maott4996_agenter.motornode:main',
         ],
     },
 )

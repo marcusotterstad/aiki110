@@ -2,27 +2,27 @@ import rclpy
 from rclpy.node import Node
 from maott4996_sign.msg import BryterTilstand
 
-class LysdiodeNode(Node):
+class MotorNode(Node):
     def __init__(self):
-        super().__init__('maott4996_lysdiodenode')
+        super().__init__('maott4996_motornode')
         self.subscription = self.create_subscription(
             BryterTilstand,
-            'maott4996_brytertilstand',
-            self.bryter_callback,
+            'maott4996_motorstyring',
+            self.motor_callback,
             10
         )
-        self.get_logger().info('Lysdiode aktiv')
+        self.get_logger().info('Motornode aktiv')
 
-    def bryter_callback(self, msg):
+    def motor_callback(self, msg):
         if msg.bryter_tilstand == 1:
-            # lys blinker
+            # Kjør motor
         elif msg.bryter_tilstand == 0:
-            # lys av
+            # Stopp motor
         else:
-            # lys gjør noe annet idk
+            self.get_logger().warn(f'Feil: ukjent tilstand {msg.bryter_tilstand}')
 
 def main(args=None):
     rclpy.init(args=args)
-    node = LysdiodeNode()
+    node = MotorNode()
     rclpy.spin(node)
     rclpy.shutdown()
