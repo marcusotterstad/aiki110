@@ -1,0 +1,10 @@
+build/
+install/
+log/
+*.o
+*.so
+*.a
+*.py[cod]
+__pycache__/
+*.egg-info/
+.DS_Store
