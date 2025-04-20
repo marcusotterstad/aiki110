@@ -10,17 +10,13 @@ class BryterService(Node):
             'maott4996_brytertilstand',
             self.bryter_callback
         )
-        self.get_logger().info('brytertjeneste startet')
-        self.counter = 0
+        self.get_logger().info('Brytertjeneste startet')
 
     def bryter_callback(self, request, response):
-        self.counter += 1
-
         if request.bryter_id != 1:
             response.bryter_tilstand = -1
         else:
-            # Flip between 1 and 0 every 3 calls
-            response.bryter_tilstand = self.counter % 2
+            # les av bryter
         return response
 
 def main(args=None):
